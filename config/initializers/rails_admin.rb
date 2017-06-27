@@ -18,6 +18,8 @@ config.navigation_static_label = "Lins Úteis "
   ## == Cancan ==
    config.authorize_with :cancan
 
+config.parent_controller = '::ApplicationController'
+
   ## == Pundit ==
   # config.authorize_with :pundit
 
@@ -31,27 +33,28 @@ config.navigation_static_label = "Lins Úteis "
   # config.show_gravatar = true
 
 config.model Sale do
-  Create do
-    fiel :client
-    fiel :sale_date
-    fiel :discount
-    fiel :notes
-    fiel :product_quantities
+  navigation_icon 'fa fa-money'
+  create do
+    field :client
+    field :sale_date
+    field :discount
+    field :notes
+    field :product_quantities
 
-    fiel :user_id, :hidden do
+    field :user_id, :hidden do
       default_value do
         binding[:view]._current_user.id
       end
     end
   end
   edit do
-    fiel :client
-    fiel :sale_date
-    fiel :discount
-    fiel :notes
-    fiel :product_quantities
+    field :client
+    field :sale_date
+    field :discount
+    field :notes
+    field :product_quantities
 
-    fiel :user_id, :hidden do
+    field :user_id, :hidden do
       default_value do
         binding[:view]._current_user.id
 
@@ -59,36 +62,58 @@ config.model Sale do
     end
   end
 end
-
   config.model Client do
-    Create do
-      fiel :name
-      fiel :company_name
-      fiel :document
-      fiel :email
-      fiel :phone
-      fiel :notes
-      fiel :status
-      fiel :address
+    navigation_icon 'fa fa-user-circle-o'
+    create do
+      field :name
+      field :company_name
+      field :document
+      field :email
+      field :phone
+      field :notes
+      field :status
+      field :address
 
-      fiel :user_id, :hidden do
+      field :user_id, :hidden do
         default_value do
           binding[:view]._current_user.id
         end
       end
     end
     edit do
-      fiel :name
-      fiel :company_name
-      fiel :document
-      fiel :email
-      fiel :phone
-      fiel :notes
-      fiel :status
-      fiel :address
+      field :name
+      field :company_name
+      field :document
+      field :email
+      field :phone
+      field :notes
+      field :status
+      field :address
 
     end
   end
+config.model Discount do
+  navigation_icon 'fa fa-usd'
+  parent Product
+end
+
+config.model Sale do
+  parent User
+  weight -2
+end
+
+config.model Comission do
+  navigation_icon 'fa fa-pie-chart'
+
+  parent User
+  weight -1
+end
+
+config.model Client do
+  parent User
+end
+
+
   config.model ProductQuantity do
     visible false
   end
@@ -102,7 +127,7 @@ end
       field :product
       field  :quantity
 
-      fiel :user_id, :hidden do
+      field :user_id, :hidden do
         default_value do
           binding[:view]._current_user.id
         end

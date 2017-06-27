@@ -6,6 +6,7 @@ class Ability
    if user.kind == 'salesman'
      can :access, :rails_admin
      can :dashboard
+     can :manage, :all
      can :manage, Client, user_id: user.id
      can :manage, Sale, user_id: user.id
      can :read, Discount, status: :active

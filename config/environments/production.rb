@@ -1,6 +1,10 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  #config.il8n.enforce_available_locales=false
+  #config.il8n.available_locales=["pt-BR"]
+  #config.il8n.default_locale = :'pt-BR'
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 

@@ -19,7 +19,7 @@ class Sale < ApplicationRecord
   if self.comission.present?
     self.comission.update(value: (Calc * 0.1), status: :pending)
     else
-  comission.create(value: (Calc * 0.1), user: self.user, sale: self, status: :pending)
+  Comission.create(value: (Calc * 0.1), user: self.user, sale: self, status: :pending)
   end
   end
 end

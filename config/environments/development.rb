@@ -1,4 +1,9 @@
 Rails.application.configure do
+
+  #config.il8n.enforce_available_locales=false
+  #config.il8n.available_locales=["pt-BR"]
+  #config.il8n.default_locale = :'pt-BR'
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on

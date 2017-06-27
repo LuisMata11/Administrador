@@ -87,14 +87,14 @@ ActiveRecord::Schema.define(version: 20170620073318) do
   create_table "sales", force: :cascade do |t|
     t.integer "client_id"
     t.date "sale_date"
-    t.string "user"
-    t.string "references"
+    t.integer "user_id"
     t.integer "discount_id"
     t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_sales_on_client_id"
     t.index ["discount_id"], name: "index_sales_on_discount_id"
+    t.index ["user_id"], name: "index_sales_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
